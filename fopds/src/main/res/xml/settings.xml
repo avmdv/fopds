@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<PreferenceCategory android:title="@string/main_settings">
+
+		<EditTextPreference
+			android:defaultValue="http://flibusta.is"
+			android:key="site_url"
+			android:selectAllOnFocus="true"
+			android:singleLine="true"
+			android:title="@string/site_url" />
+
+		<EditTextPreference
+			android:defaultValue="Books"
+			android:key="library_path"
+			android:selectAllOnFocus="true"
+			android:singleLine="true"
+			android:title="@string/library_path" />
+
+		<ListPreference
+			android:defaultValue="FB2"
+			android:entries="@array/entries"
+			android:entryValues="@array/entries"
+			android:key="download_format"
+			android:summary="Preferred download format"
+			android:title="@string/preferred_format">
+
+		</ListPreference>
+
+		<SwitchPreference
+			android:defaultValue="false"
+			android:key="blacklist"
+			android:title="@string/blacklist_genres" />
+
+	</PreferenceCategory>
+</PreferenceScreen>

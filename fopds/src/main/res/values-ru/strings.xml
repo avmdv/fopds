@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="main_settings">Основные настройки</string>
+	<string name="site_url">Адрес сайта</string>
+	<string name="library_path">Путь к библиотеке</string>
+	<string name="preferred_format">Предпочитаемый формат</string>
+	<string name="main_fragment_title">Каталог Flibusta OPDS</string>
+	<string name="main_fragment_status">Идет соединение...</string>
+	<string name="main_fragment_status1"> новых книг</string>
+	<string name="main_fragment_button_get">Скачать список книг</string>
+	<string name="main_fragment_button_list">Просмотр списка</string>
+	<string name="blacklist_genres">Скрыть жанры из черного списка</string>
+	<string name="fetched_books">Получено книг</string>
+
+
+</resources>

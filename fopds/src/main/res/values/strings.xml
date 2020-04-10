@@ -1,0 +1,28 @@
+<resources>
+	<string name="app_name">Flibusta OPDS</string>
+	<string-array name="entries">
+		<item>FB2</item>
+		<item>PDF</item>
+		<item>DJVU</item>
+		<item>EPUB</item>
+		<item>HTML</item>
+		<item>TEXT</item>
+		<item>RTF</item>
+		<item>DOC</item>
+		<item>DOCX</item>
+	</string-array>
+
+
+	<string name="main_settings">Main settings</string>
+	<string name="site_url">Site URL</string>
+	<string name="library_path">Library path</string>
+	<string name="preferred_format">Preferred format</string>
+	<string name="main_fragment_title">Flibusta OPDS catalog</string>
+	<string name="main_fragment_status">Connecting...</string>
+	<string name="main_fragment_status1">new books</string>
+	<string name="main_fragment_button_get">Get new books</string>
+	<string name="main_fragment_button_list">List books</string>
+	<string name="blacklist_genres">Hide blacklisted genres</string>
+	<string name="fetched_books">Fetched books</string>
+
+</resources>
