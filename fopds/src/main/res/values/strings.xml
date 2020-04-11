@@ -24,5 +24,8 @@
 	<string name="main_fragment_button_list">List books</string>
 	<string name="blacklist_genres">Hide blacklisted genres</string>
 	<string name="fetched_books">Fetched books</string>
+	<string name="application_name">Flibusta OPDS browser</string>
+	<string name="copyright">(c) Andrey Mochalov 2020</string>
+	<string name="application_site"><a href="https://github.com/avmdv/fopds">https://github.com/avmdv/fopds</a></string>
 
 </resources>

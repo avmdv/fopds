@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         MainFragment mainFragment = (MainFragment) getSupportFragmentManager().findFragmentByTag("mainFragment");
         if (mainFragment == null) {
             mainFragment = new MainFragment();
+        }
+        if ((!mainFragment.isAdded()) && (getSupportFragmentManager().getBackStackEntryCount() == 0)) {
             getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, mainFragment, "mainFragment").commit();
         }
     }
@@ -78,10 +81,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag("mainFragment");
+        if ((fragment != null) && (fragment.isVisible())) {
             menu.findItem(R.id.menuUpdate).setEnabled(true);
         } else {
             menu.findItem(R.id.menuUpdate).setEnabled(false);
+        }
+        AboutFragment aboutFragment = (AboutFragment) getSupportFragmentManager().findFragmentByTag("aboutFragment");
+        if ((aboutFragment != null) && (aboutFragment.isVisible())) {
+            menu.findItem(R.id.menuAbout).setEnabled(false);
+        } else {
+            menu.findItem(R.id.menuAbout).setEnabled(true);
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -95,9 +105,23 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuUpdate:
                 updateMainFragment();
                 break;
+            case R.id.menuAbout:
+                showAboutFragment();
+                break;
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showAboutFragment() {
+        AboutFragment aboutFragment = (AboutFragment) getSupportFragmentManager().findFragmentByTag("aboutFragment");
+        if (aboutFragment == null) {
+            aboutFragment = new AboutFragment();
+            FragmentTransaction ftrans = getSupportFragmentManager().beginTransaction();
+            ftrans.addToBackStack(null);
+            ftrans.replace(R.id.fragmentContainer, aboutFragment, "aboutFragment").commit();
+
+        }
     }
 }

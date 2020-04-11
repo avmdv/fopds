@@ -11,6 +11,7 @@
 	<string name="main_fragment_button_list">Просмотр списка</string>
 	<string name="blacklist_genres">Скрыть жанры из черного списка</string>
 	<string name="fetched_books">Получено книг</string>
+	<string name="copyright">(c) А. Мочалов 2020</string>
 
 
 </resources>
