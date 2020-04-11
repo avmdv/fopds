@@ -45,6 +45,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
         this.isConnected = false;
         this.isReady = false;
         this.isProcessed = false;
@@ -176,10 +177,13 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickButtonList() {
-        GenresListFragment genresListFragment = new GenresListFragment();
-        genresListFragment.setBooksList(booksList);
-        FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
-        ftrans.addToBackStack(null);
-        ftrans.replace(R.id.fragmentContainer, genresListFragment, "genresListFragment").commit();
+        GenresListFragment genresListFragment = (GenresListFragment) getActivity().getSupportFragmentManager().findFragmentByTag("genresListFragment");
+        if (genresListFragment == null) {
+            genresListFragment = new GenresListFragment();
+            genresListFragment.setBooksList(booksList);
+            FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
+            ftrans.addToBackStack(null);
+            ftrans.replace(R.id.fragmentContainer, genresListFragment, "genresListFragment").commit();
+        }
     }
 }

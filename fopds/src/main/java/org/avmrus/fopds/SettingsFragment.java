@@ -13,6 +13,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     SharedPreferences preferences;
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
+    @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         preferences = getPreferenceManager().getSharedPreferences();
         addPreferencesFromResource(R.xml.settings);

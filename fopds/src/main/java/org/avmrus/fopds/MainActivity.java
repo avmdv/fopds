@@ -45,7 +45,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showMainFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, new MainFragment(), "mainFragment").commit();
+        MainFragment mainFragment = (MainFragment) getSupportFragmentManager().findFragmentByTag("mainFragment");
+        if (mainFragment == null) {
+            mainFragment = new MainFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, mainFragment, "mainFragment").commit();
+        }
     }
 
     private void updateMainFragment() {
@@ -57,9 +61,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showSettingsFragment() {
-        FragmentTransaction ftrans = getSupportFragmentManager().beginTransaction();
-        ftrans.addToBackStack(null);
-        ftrans.replace(R.id.fragmentContainer, new SettingsFragment()).commit();
+        SettingsFragment settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentByTag("settingsFragment");
+        if (settingsFragment == null) {
+            settingsFragment = new SettingsFragment();
+            FragmentTransaction ftrans = getSupportFragmentManager().beginTransaction();
+            ftrans.addToBackStack(null);
+            ftrans.replace(R.id.fragmentContainer, settingsFragment, "settingsFragment").commit();
+        }
     }
 
     @Override

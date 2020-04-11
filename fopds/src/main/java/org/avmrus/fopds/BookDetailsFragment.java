@@ -41,6 +41,12 @@ public class BookDetailsFragment extends Fragment {
         this.book = book;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -91,11 +97,15 @@ public class BookDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (cover != null) {
-                    CoverFragment coverFragment = new CoverFragment();
-                    coverFragment.setCover(cover);
-                    FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
-                    ftrans.addToBackStack(null);
-                    ftrans.replace(R.id.fragmentContainer, coverFragment, "coverFragment").commit();
+                    CoverFragment coverFragment = (CoverFragment) getActivity().getSupportFragmentManager().findFragmentByTag("coverFragment");
+                    if (coverFragment == null) {
+                        coverFragment = new CoverFragment();
+                        coverFragment.setCover(cover);
+                        FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
+                        ftrans.addToBackStack(null);
+                        ftrans.replace(R.id.fragmentContainer, coverFragment, "coverFragment").commit();
+
+                    }
                 }
             }
         });

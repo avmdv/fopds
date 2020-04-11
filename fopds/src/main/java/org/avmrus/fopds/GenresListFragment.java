@@ -23,6 +23,13 @@ public class GenresListFragment extends ListFragment {
         genresList = extractGenres(list);
     }
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -33,11 +40,14 @@ public class GenresListFragment extends ListFragment {
     @Override
     public void onListItemClick(@NonNull ListView l, @NonNull View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        BooksListFragment booksListFragment = new BooksListFragment();
-        booksListFragment.setCategory(booksList, genresList.get(position));
-        FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
-        ftrans.addToBackStack(null);
-        ftrans.replace(R.id.fragmentContainer, booksListFragment, "booksListFragment").commit();
+        BooksListFragment booksListFragment = (BooksListFragment) getActivity().getSupportFragmentManager().findFragmentByTag("booksListFragment");
+        if (booksListFragment == null) {
+            booksListFragment = new BooksListFragment();
+            booksListFragment.setCategory(booksList, genresList.get(position));
+            FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
+            ftrans.addToBackStack(null);
+            ftrans.replace(R.id.fragmentContainer, booksListFragment, "booksListFragment").commit();
+        }
     }
 
     private ArrayList<String> extractGenres(ArrayList<Book> booksList) {
