@@ -173,6 +173,8 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
     private void onClickButtonGet() {
         booksList.clear();
+        this.isReady = false;
+        buttonList.setEnabled(false);
         fetchBooksList(0);
 
     }
