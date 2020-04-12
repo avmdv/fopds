@@ -5,18 +5,18 @@ import android.graphics.Bitmap;
 public class Reply {
 
     public interface UrlListener {
-        public void onSuccess(byte[] reply);
+        void onSuccess(byte[] reply);
     }
 
     public interface ImageListener {
-        public void onSuccess(Bitmap bitmap);
+        void onSuccess(Bitmap bitmap);
     }
 
     public interface ProgressListener {
-        public void onProgress(int progress);
+        void onProgress(int progress);
     }
 
     public interface ErrorListener {
-        public void onError(String error);
+        void onError(String error);
     }
 }

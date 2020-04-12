@@ -72,11 +72,11 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     }
 
     private void createChildViews(View view) {
-        textViewTitle = view.findViewById(R.id.mainFragmentTitle);
-        textViewStatus = view.findViewById(R.id.mainFragmentStatus);
-        buttonGet = view.findViewById(R.id.mainFragmentButtonGet);
-        buttonList = view.findViewById(R.id.mainFragmentButtonList);
-        buttonCommit = view.findViewById(R.id.mainFragmentbuttonCommit);
+        textViewTitle = view.findViewById(R.id.fragment_main_title);
+        textViewStatus = view.findViewById(R.id.fragment_main_status);
+        buttonGet = view.findViewById(R.id.fragment_main_button_get);
+        buttonList = view.findViewById(R.id.fragment_main_button_list);
+        buttonCommit = view.findViewById(R.id.fragment_main_button_commit);
     }
 
     private void initChildViews() {
@@ -86,8 +86,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         buttonGet.setOnClickListener(this);
         buttonList.setEnabled(isReady);
         buttonList.setOnClickListener(this);
-        buttonCommit.setEnabled(isProcessed);
-        buttonCommit.setOnClickListener(this);
+//        buttonCommit.setEnabled(isProcessed);
+//        buttonCommit.setOnClickListener(this);
+        buttonCommit.setVisibility(View.GONE);
     }
 
     private void fetchBooksList(final int page) {
@@ -152,13 +153,13 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.mainFragmentButtonGet:
+            case R.id.fragment_main_button_get:
                 onClickButtonGet();
                 break;
-            case R.id.mainFragmentButtonList:
+            case R.id.fragment_main_button_list:
                 onClickButtonList();
                 break;
-            case R.id.mainFragmentbuttonCommit:
+            case R.id.fragment_main_button_commit:
                 onClickButtonCommit();
                 break;
             default:
@@ -183,7 +184,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             genresListFragment.setBooksList(booksList);
             FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
             ftrans.addToBackStack(null);
-            ftrans.replace(R.id.fragmentContainer, genresListFragment, "genresListFragment").commit();
+            ftrans.replace(R.id.fragment_container, genresListFragment, "genresListFragment").commit();
         }
     }
 }

@@ -41,7 +41,7 @@ public class BooksListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_books_list, null);
-        listView = view.findViewById(R.id.list);
+        listView = view.findViewById(R.id.fragment_books_list);
         listView.setDivider(null);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -52,7 +52,7 @@ public class BooksListFragment extends Fragment {
                     bookDetailsFragment.setBook(booksList.get(position));
                     FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
                     ftrans.addToBackStack(null);
-                    ftrans.replace(R.id.fragmentContainer, bookDetailsFragment, "bookDetailsFragment").commit();
+                    ftrans.replace(R.id.fragment_container, bookDetailsFragment, "bookDetailsFragment").commit();
                 }
             }
         });

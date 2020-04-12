@@ -18,14 +18,17 @@
 	<string name="library_path">Library path</string>
 	<string name="preferred_format">Preferred format</string>
 	<string name="main_fragment_title">Flibusta OPDS catalog</string>
-	<string name="main_fragment_status">Connecting...</string>
+	<string name="main_fragment_status">Connecting…</string>
 	<string name="main_fragment_status1">new books</string>
 	<string name="main_fragment_button_get">Get new books</string>
 	<string name="main_fragment_button_list">List books</string>
 	<string name="blacklist_genres">Hide blacklisted genres</string>
 	<string name="fetched_books">Fetched books</string>
 	<string name="application_name">Flibusta OPDS browser</string>
-	<string name="copyright">(c) Andrey Mochalov 2020</string>
+	<string name="copyright">© Andrey Mochalov 2020</string>
 	<string name="application_site"><a href="https://github.com/avmdv/fopds">https://github.com/avmdv/fopds</a></string>
+	<string name="settings">Settings</string>
+	<string name="update">Update</string>
+	<string name="about">About program …</string>
 
 </resources>

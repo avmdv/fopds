@@ -37,7 +37,7 @@ public class BooksListAdapter extends ArrayAdapter<Book> {
         if (listItem == null) {
             listItem = LayoutInflater.from(Settings.getInstance().getContext()).inflate(R.layout.item_books_list, parent, false);
         }
-        LinearLayout listLayout = listItem.findViewById(R.id.listitem);
+        LinearLayout listLayout = listItem.findViewById(R.id.item_bookslist_item);
         createChildViews(listItem);
         Book book = booksList.get(position);
         if (isBookOfGenre(book, genre)) {
@@ -61,9 +61,9 @@ public class BooksListAdapter extends ArrayAdapter<Book> {
     }
 
     private void createChildViews(View view) {
-        this.textViewAuthor = view.findViewById(R.id.bookauthor);
-        this.textViewTitle = view.findViewById(R.id.booktitle);
-        this.imageViewCover = view.findViewById(R.id.listImage);
+        this.textViewAuthor = view.findViewById(R.id.item_bookslist_author);
+        this.textViewTitle = view.findViewById(R.id.item_bookslist_title);
+        this.imageViewCover = view.findViewById(R.id.item_bookslist_cover);
     }
 
     private void initChildViews(final Book book) {

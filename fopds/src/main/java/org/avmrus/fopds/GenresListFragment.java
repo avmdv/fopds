@@ -46,7 +46,7 @@ public class GenresListFragment extends ListFragment {
             booksListFragment.setCategory(booksList, genresList.get(position));
             FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
             ftrans.addToBackStack(null);
-            ftrans.replace(R.id.fragmentContainer, booksListFragment, "booksListFragment").commit();
+            ftrans.replace(R.id.fragment_container, booksListFragment, "booksListFragment").commit();
         }
     }
 

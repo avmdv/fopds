@@ -5,13 +5,16 @@
 	<string name="library_path">Путь к библиотеке</string>
 	<string name="preferred_format">Предпочитаемый формат</string>
 	<string name="main_fragment_title">Каталог Flibusta OPDS</string>
-	<string name="main_fragment_status">Идет соединение...</string>
+	<string name="main_fragment_status">Идет соединение…</string>
 	<string name="main_fragment_status1"> новых книг</string>
 	<string name="main_fragment_button_get">Скачать список книг</string>
 	<string name="main_fragment_button_list">Просмотр списка</string>
 	<string name="blacklist_genres">Скрыть жанры из черного списка</string>
 	<string name="fetched_books">Получено книг</string>
-	<string name="copyright">(c) А. Мочалов 2020</string>
+	<string name="copyright">© А. Мочалов 2020</string>
+	<string name="settings">Настройки</string>
+	<string name="update">Обновить</string>
+	<string name="about">О программе …</string>
 
 
 </resources>

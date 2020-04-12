@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             mainFragment = new MainFragment();
         }
         if ((!mainFragment.isAdded()) && (getSupportFragmentManager().getBackStackEntryCount() == 0)) {
-            getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, mainFragment, "mainFragment").commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mainFragment, "mainFragment").commit();
         }
     }
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             settingsFragment = new SettingsFragment();
             FragmentTransaction ftrans = getSupportFragmentManager().beginTransaction();
             ftrans.addToBackStack(null);
-            ftrans.replace(R.id.fragmentContainer, settingsFragment, "settingsFragment").commit();
+            ftrans.replace(R.id.fragment_container, settingsFragment, "settingsFragment").commit();
         }
     }
 
@@ -83,15 +83,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         Fragment fragment = getSupportFragmentManager().findFragmentByTag("mainFragment");
         if ((fragment != null) && (fragment.isVisible())) {
-            menu.findItem(R.id.menuUpdate).setEnabled(true);
+            menu.findItem(R.id.menu_item_update).setEnabled(true);
         } else {
-            menu.findItem(R.id.menuUpdate).setEnabled(false);
+            menu.findItem(R.id.menu_item_update).setEnabled(false);
         }
         AboutFragment aboutFragment = (AboutFragment) getSupportFragmentManager().findFragmentByTag("aboutFragment");
         if ((aboutFragment != null) && (aboutFragment.isVisible())) {
-            menu.findItem(R.id.menuAbout).setEnabled(false);
+            menu.findItem(R.id.menu_item_about).setEnabled(false);
         } else {
-            menu.findItem(R.id.menuAbout).setEnabled(true);
+            menu.findItem(R.id.menu_item_about).setEnabled(true);
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -99,13 +99,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menuSettings:
+            case R.id.menu_item_settings:
                 showSettingsFragment();
                 break;
-            case R.id.menuUpdate:
+            case R.id.menu_item_update:
                 updateMainFragment();
                 break;
-            case R.id.menuAbout:
+            case R.id.menu_item_about:
                 showAboutFragment();
                 break;
             default:
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             aboutFragment = new AboutFragment();
             FragmentTransaction ftrans = getSupportFragmentManager().beginTransaction();
             ftrans.addToBackStack(null);
-            ftrans.replace(R.id.fragmentContainer, aboutFragment, "aboutFragment").commit();
+            ftrans.replace(R.id.fragment_container, aboutFragment, "aboutFragment").commit();
 
         }
     }
