@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,6 +40,7 @@ public class GenresListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        setHasOptionsMenu(true);
     }
 
 
@@ -115,10 +117,67 @@ public class GenresListFragment extends Fragment {
     private void addGenreToBlacklist(String genre) {
         if (!genresBlacklist.contains(genre)) {
             this.genresBlacklist.add(genre);
+            Collections.sort(genresBlacklist);
             if (Settings.getInstance().getBlacklist()) {
                 ((ArrayAdapter) listView.getAdapter()).notifyDataSetChanged();
             }
         }
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_genreslist, menu);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        if (Settings.getInstance().getBlacklist()) {
+            menu.findItem(R.id.menu_genreslist_item_blacklist).setChecked(true);
+        } else {
+            menu.findItem(R.id.menu_genreslist_item_blacklist).setChecked(false);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_genreslist_item_blacklist:
+                blackListGenres(item);
+                break;
+            case R.id.menu_genreslist_edit_blacklist:
+                editBlackList();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void blackListGenres(MenuItem item) {
+        if (item.isChecked()) {
+            item.setChecked(false);
+            Settings.getInstance().getPreferences().edit().putBoolean("blacklist", false).commit();
+        } else {
+            item.setChecked(true);
+            Settings.getInstance().getPreferences().edit().putBoolean("blacklist", true).commit();
+        }
+        ((ArrayAdapter) listView.getAdapter()).notifyDataSetChanged();
+    }
+
+    private void editBlackList() {
+        BlacklistEditorFragment blacklistEditorFragment = (BlacklistEditorFragment) getActivity().getSupportFragmentManager().findFragmentByTag("genresBlacklistEditorFragment");
+        if (blacklistEditorFragment == null) {
+            blacklistEditorFragment = new BlacklistEditorFragment();
+            blacklistEditorFragment.setList(genresBlacklist);
+            FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
+            ftrans.addToBackStack(null);
+            ftrans.replace(R.id.fragment_container, blacklistEditorFragment, "genresBlacklistEditorFragment").commit();
+        }
+
+    }
+
+
 }
 

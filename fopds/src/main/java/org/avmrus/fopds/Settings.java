@@ -55,7 +55,11 @@ public class Settings {
     }
 
     public Boolean getBlacklist() {
-        return blacklist;
+        return preferences.getBoolean("blacklist", false);
+    }
+
+    public SharedPreferences getPreferences() {
+        return preferences;
     }
 
     public void readPreferences() {
