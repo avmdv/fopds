@@ -5,7 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -17,10 +21,12 @@ public class GenresListFragment extends ListFragment {
 
     private ArrayList<Book> booksList;
     private ArrayList<String> genresList;
+    private ArrayList<String> genresBlacklist;
 
     public void setBooksList(ArrayList<Book> list) {
         this.booksList = list;
         genresList = extractGenres(list);
+        genresBlacklist = Settings.getInstance().restoreArrayList("genresblacklist");
     }
 
 
@@ -35,6 +41,7 @@ public class GenresListFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, genresList);
         setListAdapter(adapter);
+        registerForContextMenu(this.getListView());
     }
 
     @Override
@@ -63,6 +70,41 @@ public class GenresListFragment extends ListFragment {
         }
         Collections.sort(genresList);
         return genresList;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Settings.getInstance().storeArrayList("genresblacklist", genresBlacklist);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuInflater inflater = this.getActivity().getMenuInflater();
+        inflater.inflate(R.menu.menu_genreslist_context, menu);
+        menu.findItem(R.id.menu_genreslist_item_remove).setEnabled(false);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.menu_genreslist_item_add:
+                addGenreToBlacklist(genresList.get(info.position));
+                break;
+            case R.id.menu_genreslist_item_remove:
+                break;
+            default:
+                break;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    private void addGenreToBlacklist(String genre) {
+        this.genresBlacklist.add(genre);
     }
 
 }
