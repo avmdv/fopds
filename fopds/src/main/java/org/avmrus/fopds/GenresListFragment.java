@@ -55,13 +55,13 @@ public class GenresListFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                BooksListFragment booksListFragment = (BooksListFragment) getActivity().getSupportFragmentManager().findFragmentByTag("booksListFragment");
+                BooksListFragment booksListFragment = (BooksListFragment) getActivity().getSupportFragmentManager().findFragmentByTag(Constants.FRAGMENT_BOOKS_LIST);
                 if (booksListFragment == null) {
                     booksListFragment = new BooksListFragment();
                     booksListFragment.setCategory(booksList, genresList.get(position));
                     FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
                     ftrans.addToBackStack(null);
-                    ftrans.replace(R.id.fragment_container, booksListFragment, "booksListFragment").commit();
+                    ftrans.replace(R.id.fragment_container, booksListFragment, Constants.FRAGMENT_BOOKS_LIST).commit();
                 }
             }
         });
@@ -167,13 +167,13 @@ public class GenresListFragment extends Fragment {
     }
 
     private void editBlackList() {
-        BlacklistEditorFragment blacklistEditorFragment = (BlacklistEditorFragment) getActivity().getSupportFragmentManager().findFragmentByTag("genresBlacklistEditorFragment");
+        BlacklistEditorFragment blacklistEditorFragment = (BlacklistEditorFragment) getActivity().getSupportFragmentManager().findFragmentByTag(Constants.FRAGMENT_BLACKLIST_EDITOR);
         if (blacklistEditorFragment == null) {
             blacklistEditorFragment = new BlacklistEditorFragment();
             blacklistEditorFragment.setList(genresBlacklist);
             FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
             ftrans.addToBackStack(null);
-            ftrans.replace(R.id.fragment_container, blacklistEditorFragment, "genresBlacklistEditorFragment").commit();
+            ftrans.replace(R.id.fragment_container, blacklistEditorFragment, Constants.FRAGMENT_BLACKLIST_EDITOR).commit();
         }
 
     }

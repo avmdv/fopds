@@ -10,7 +10,6 @@ import java.util.Set;
 
 public class Settings {
     private static volatile Settings instance;
-    public final static String LOG_TAG = "fopds: ";
     private Context context;
     private SharedPreferences preferences;
 

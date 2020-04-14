@@ -3,7 +3,7 @@ package org.avmrus.fopds.inet;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.avmrus.fopds.Settings;
+import org.avmrus.fopds.Constants;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -51,7 +51,7 @@ public class InetDownloader extends AsyncTask<String, Integer, byte[]> {
                 byte[] buffer = new byte[1024];
                 int totalRead = 0;
                 int bytesRead = 0;
-                Log.d(Settings.LOG_TAG, "file " + filename + " size: " + filesize);
+                Log.d(Constants.LOG_TAG, "file " + filename + " size: " + filesize);
                 while ((bytesRead = inputStream.read(buffer)) > 0) {
                     outputStream.write(buffer, 0, bytesRead);
                     totalRead = totalRead + bytesRead;

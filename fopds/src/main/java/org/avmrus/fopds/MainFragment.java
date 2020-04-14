@@ -93,7 +93,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
     private void fetchBooksList(final int page) {
         String siteUrl = Settings.getInstance().getSiteUrl();
-        Log.d(Settings.LOG_TAG, "fetching page " + page);
+        Log.d(Constants.LOG_TAG, "fetching page " + page);
         String url = siteUrl + "/opds/new/" + page + "/new";
         InetGetter inetFetcher = new InetGetter();
         inetFetcher.getUrl(url, new Reply.UrlListener() {
@@ -180,13 +180,13 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickButtonList() {
-        GenresListFragment genresListFragment = (GenresListFragment) getActivity().getSupportFragmentManager().findFragmentByTag("genresListFragment");
+        GenresListFragment genresListFragment = (GenresListFragment) getActivity().getSupportFragmentManager().findFragmentByTag(Constants.FRAGMENT_GENRES_LIST);
         if (genresListFragment == null) {
             genresListFragment = new GenresListFragment();
             genresListFragment.setBooksList(booksList);
             FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
             ftrans.addToBackStack(null);
-            ftrans.replace(R.id.fragment_container, genresListFragment, "genresListFragment").commit();
+            ftrans.replace(R.id.fragment_container, genresListFragment, Constants.FRAGMENT_GENRES_LIST).commit();
         }
     }
 }

@@ -46,13 +46,13 @@ public class BooksListFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                BookDetailsFragment bookDetailsFragment = (BookDetailsFragment) getActivity().getSupportFragmentManager().findFragmentByTag("bookDetailsFragment");
+                BookDetailsFragment bookDetailsFragment = (BookDetailsFragment) getActivity().getSupportFragmentManager().findFragmentByTag(Constants.FRAGMENT_BOOK_DETAILS);
                 if (bookDetailsFragment == null) {
                     bookDetailsFragment = new BookDetailsFragment();
                     bookDetailsFragment.setBook(booksList.get(position));
                     FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
                     ftrans.addToBackStack(null);
-                    ftrans.replace(R.id.fragment_container, bookDetailsFragment, "bookDetailsFragment").commit();
+                    ftrans.replace(R.id.fragment_container, bookDetailsFragment, Constants.FRAGMENT_BOOK_DETAILS).commit();
                 }
             }
         });

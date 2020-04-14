@@ -1,7 +1,6 @@
 package org.avmrus.fopds;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setPermissions();
-        initInetQueue(getApplicationContext());
-        initSettings(getApplicationContext());
+        InetQueue.getInstance().init(getApplicationContext());
+        Settings.getInstance().init(getApplicationContext());
         showMainFragment();
     }
 
@@ -33,41 +32,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void initInetQueue(Context context) {
-        InetQueue.getInstance().init(context);
-    }
-
-    private void initSettings(Context context) {
-        Settings.getInstance().init(context);
-    }
-
     public void showMainFragment() {
-        MainFragment mainFragment = (MainFragment) getSupportFragmentManager().findFragmentByTag("mainFragment");
+        MainFragment mainFragment = (MainFragment) getSupportFragmentManager().findFragmentByTag(Constants.FRAGMENT_MAIN);
         if (mainFragment == null) {
             mainFragment = new MainFragment();
         }
         getSupportFragmentManager().popBackStack();
         getSupportFragmentManager().executePendingTransactions();
         if ((!mainFragment.isAdded()) && (getSupportFragmentManager().getBackStackEntryCount() == 0)) {
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mainFragment, "mainFragment").commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mainFragment, Constants.FRAGMENT_MAIN).commit();
         }
     }
 
     private void updateMainFragment() {
         if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
             FragmentTransaction ftrans = getSupportFragmentManager().beginTransaction();
-            ftrans.remove(getSupportFragmentManager().findFragmentByTag("mainFragment")).commit();
+            ftrans.remove(getSupportFragmentManager().findFragmentByTag(Constants.FRAGMENT_MAIN)).commit();
             showMainFragment();
         }
     }
 
     private void showSettingsFragment() {
-        SettingsFragment settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentByTag("settingsFragment");
+        SettingsFragment settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentByTag(Constants.FRAGMENT_SETTINGS);
         if (settingsFragment == null) {
             settingsFragment = new SettingsFragment();
             FragmentTransaction ftrans = getSupportFragmentManager().beginTransaction();
             ftrans.addToBackStack(null);
-            ftrans.replace(R.id.fragment_container, settingsFragment, "settingsFragment").commit();
+            ftrans.replace(R.id.fragment_container, settingsFragment, Constants.FRAGMENT_SETTINGS).commit();
         }
     }
 
@@ -79,19 +70,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag("mainFragment");
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(Constants.FRAGMENT_MAIN);
         if ((fragment != null) && (fragment.isVisible())) {
             menu.findItem(R.id.menu_item_update).setVisible(true);
         } else {
             menu.findItem(R.id.menu_item_update).setVisible(false);
         }
-        SettingsFragment settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentByTag("settingsFragment");
+        SettingsFragment settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentByTag(Constants.FRAGMENT_SETTINGS);
         if ((settingsFragment != null) && (settingsFragment.isVisible())) {
             menu.findItem(R.id.menu_item_settings).setEnabled(false);
         } else {
             menu.findItem(R.id.menu_item_settings).setEnabled(true);
         }
-        AboutFragment aboutFragment = (AboutFragment) getSupportFragmentManager().findFragmentByTag("aboutFragment");
+        AboutFragment aboutFragment = (AboutFragment) getSupportFragmentManager().findFragmentByTag(Constants.FRAGMENT_ABOUT);
         if ((aboutFragment != null) && (aboutFragment.isVisible())) {
             menu.findItem(R.id.menu_item_about).setEnabled(false);
         } else {
@@ -119,13 +110,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showAboutFragment() {
-        AboutFragment aboutFragment = (AboutFragment) getSupportFragmentManager().findFragmentByTag("aboutFragment");
+        AboutFragment aboutFragment = (AboutFragment) getSupportFragmentManager().findFragmentByTag(Constants.FRAGMENT_ABOUT);
         if (aboutFragment == null) {
             aboutFragment = new AboutFragment();
             FragmentTransaction ftrans = getSupportFragmentManager().beginTransaction();
             ftrans.addToBackStack(null);
-            ftrans.replace(R.id.fragment_container, aboutFragment, "aboutFragment").commit();
-
+            ftrans.replace(R.id.fragment_container, aboutFragment, Constants.FRAGMENT_ABOUT).commit();
         }
     }
 }

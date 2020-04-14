@@ -97,13 +97,13 @@ public class BookDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (cover != null) {
-                    CoverFragment coverFragment = (CoverFragment) getActivity().getSupportFragmentManager().findFragmentByTag("coverFragment");
+                    CoverFragment coverFragment = (CoverFragment) getActivity().getSupportFragmentManager().findFragmentByTag(Constants.FRAGMENT_COVER);
                     if (coverFragment == null) {
                         coverFragment = new CoverFragment();
                         coverFragment.setCover(cover);
                         FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
                         ftrans.addToBackStack(null);
-                        ftrans.replace(R.id.fragment_container, coverFragment, "coverFragment").commit();
+                        ftrans.replace(R.id.fragment_container, coverFragment, Constants.FRAGMENT_COVER).commit();
 
                     }
                 }
@@ -167,7 +167,7 @@ public class BookDetailsFragment extends Fragment {
             public void onSuccess(byte[] reply) {
                 try {
                     String filename = path + "/" + inetDownloader.getFilename();
-                    Log.d(Settings.LOG_TAG, "filename= " + filename);
+                    Log.d(Constants.LOG_TAG, "filename= " + filename);
                     File directory = new File(path);
                     directory.mkdirs();
                     FileOutputStream fileOutputStream = new FileOutputStream(filename);
