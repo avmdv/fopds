@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: "me.tadej.versioning"
 
 android {
     compileSdkVersion 29
@@ -8,8 +9,8 @@ android {
         applicationId "org.avmrus.fopds"
         minSdkVersion 17
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode versioning.versionCode()
+        versionName versioning.versionName()
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

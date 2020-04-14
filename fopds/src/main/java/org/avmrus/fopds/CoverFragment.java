@@ -17,11 +17,17 @@ public class CoverFragment extends Fragment {
         this.bitmap = bitmap;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cover, null);
-        ImageView imageView = view.findViewById(R.id.cover);
+        ImageView imageView = view.findViewById(R.id.fragment_cover_cover);
         imageView.setImageBitmap(bitmap);
         return view;
     }

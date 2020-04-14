@@ -6,7 +6,7 @@
 	android:layout_height="match_parent">
 
 	<TextView
-		android:id="@+id/mainFragmentTitle"
+		android:id="@+id/fragment_main_title"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:textAlignment="center"
@@ -15,7 +15,7 @@
 		android:text="@string/main_fragment_title"/>
 
 	<TextView
-		android:id="@+id/mainFragmentStatus"
+		android:id="@+id/fragment_main_status"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="8dp"
@@ -24,24 +24,24 @@
 		android:text="@string/main_fragment_status"/>
 
 	<Button
-		android:id="@+id/mainFragmentButtonGet"
+		android:id="@+id/fragment_main_button_get"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="8dp"
 		android:text="@string/main_fragment_button_get"/>
 
 	<Button
-		android:id="@+id/mainFragmentButtonList"
+		android:id="@+id/fragment_main_button_list"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="8dp"
 		android:text="@string/main_fragment_button_list"/>
 
 	<Button
-		android:id="@+id/mainFragmentbuttonCommit"
+		android:id="@+id/fragment_main_button_commit"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="8dp"
-		android:text="Commit"/>
+		android:text=""/>
 
 </LinearLayout>

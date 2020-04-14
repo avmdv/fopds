@@ -41,6 +41,12 @@ public class BookDetailsFragment extends Fragment {
         this.book = book;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,13 +56,13 @@ public class BookDetailsFragment extends Fragment {
     }
 
     private void initChildViews(View view) {
-        textviewStatus = view.findViewById(R.id.tvStatus);
+        textviewStatus = view.findViewById(R.id.fragment_book_status);
         initAuthor(view);
         initTitle(view);
         initContent(view);
         initCover(view);
         initAvailableFormats(view);
-        ImageButton bookDownload = view.findViewById(R.id.bookDownload);
+        ImageButton bookDownload = view.findViewById(R.id.fragment_book_download);
         bookDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,24 +72,24 @@ public class BookDetailsFragment extends Fragment {
     }
 
     private void initAuthor(View view) {
-        TextView textViewAuthor = view.findViewById(R.id.bookAuthor);
+        TextView textViewAuthor = view.findViewById(R.id.fragment_book_author);
         if (book.getAuthors().size() > 0) {
             textViewAuthor.setText(book.getAuthors().get(0).getShortName());
         }
     }
 
     private void initTitle(View view) {
-        TextView textViewTitle = view.findViewById(R.id.bookTitle);
+        TextView textViewTitle = view.findViewById(R.id.fragment_book_title);
         textViewTitle.setText(book.getTitle());
     }
 
     private void initContent(View view) {
-        TextView textViewContent = view.findViewById(R.id.bookContent);
+        TextView textViewContent = view.findViewById(R.id.fragment_book_content);
         textViewContent.setText(book.getContent());
     }
 
     private void initCover(View view) {
-        ImageView imageViewCover = view.findViewById(R.id.bookCover);
+        ImageView imageViewCover = view.findViewById(R.id.fragment_book_cover);
         if (book.getCoverUrl() != null) {
             fetchCover(book.getCoverUrl(), imageViewCover);
         }
@@ -91,11 +97,15 @@ public class BookDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (cover != null) {
-                    CoverFragment coverFragment = new CoverFragment();
-                    coverFragment.setCover(cover);
-                    FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
-                    ftrans.addToBackStack(null);
-                    ftrans.replace(R.id.fragmentContainer, coverFragment, "coverFragment").commit();
+                    CoverFragment coverFragment = (CoverFragment) getActivity().getSupportFragmentManager().findFragmentByTag(Constants.FRAGMENT_COVER);
+                    if (coverFragment == null) {
+                        coverFragment = new CoverFragment();
+                        coverFragment.setCover(cover);
+                        FragmentTransaction ftrans = getActivity().getSupportFragmentManager().beginTransaction();
+                        ftrans.addToBackStack(null);
+                        ftrans.replace(R.id.fragment_container, coverFragment, Constants.FRAGMENT_COVER).commit();
+
+                    }
                 }
             }
         });
@@ -103,7 +113,7 @@ public class BookDetailsFragment extends Fragment {
 
     private void initAvailableFormats(View view) {
         downloadFormat = Settings.getInstance().getPreferredFormat();
-        availableFormats = view.findViewById(R.id.spinner);
+        availableFormats = view.findViewById(R.id.fragment_book_spinner);
         ArrayList<String> data = new ArrayList<>();
         if (book.getDownloadUrls().size() > 0) {
             for (int i = 0; i < book.getDownloadUrls().size(); i++) {
@@ -157,7 +167,7 @@ public class BookDetailsFragment extends Fragment {
             public void onSuccess(byte[] reply) {
                 try {
                     String filename = path + "/" + inetDownloader.getFilename();
-                    Log.d(Settings.LOG_TAG, "filename= " + filename);
+                    Log.d(Constants.LOG_TAG, "filename= " + filename);
                     File directory = new File(path);
                     directory.mkdirs();
                     FileOutputStream fileOutputStream = new FileOutputStream(filename);
