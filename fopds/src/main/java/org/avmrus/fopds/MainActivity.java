@@ -2,7 +2,6 @@ package org.avmrus.fopds;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,7 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -41,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initSettings(Context context) {
         Settings.getInstance().init(context);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        Settings.getInstance().readPreferences(preferences);
+        Settings.getInstance().readPreferences();
     }
 
     public void showMainFragment() {

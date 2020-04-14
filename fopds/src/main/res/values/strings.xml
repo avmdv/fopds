@@ -30,5 +30,9 @@
 	<string name="settings">Settings</string>
 	<string name="update">Update</string>
 	<string name="about">About program …</string>
+	<string name="add_genre_to_blacklist">Add genre to blacklist</string>
+	<string name="remove_genre_from_blacklist">Remove genre from blacklist</string>
+	<string name="turn_on_blacklist">Blacklist genres</string>
+	<string name="edit_blacklist">Edit blacklist</string>
 
 </resources>

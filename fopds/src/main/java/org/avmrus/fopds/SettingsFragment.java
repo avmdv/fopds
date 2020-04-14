@@ -7,6 +7,7 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -34,7 +35,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference preference = findPreference(key);
         setPreferenceSummary(preference);
-        Settings.getInstance().readPreferences(preferences);
+        Settings.getInstance().readPreferences();
     }
 
 

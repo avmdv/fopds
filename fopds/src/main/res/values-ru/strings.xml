@@ -15,6 +15,10 @@
 	<string name="settings">Настройки</string>
 	<string name="update">Обновить</string>
 	<string name="about">О программе …</string>
+	<string name="add_genre_to_blacklist">Добавить в черный список</string>
+	<string name="remove_genre_from_blacklist">Удалить из черного списка</string>
+	<string name="turn_on_blacklist">Включить черный список</string>
+	<string name="edit_blacklist">Редактировать черный список</string>
 
 
 </resources>
