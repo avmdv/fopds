@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         if (mainFragment == null) {
             mainFragment = new MainFragment();
         }
+        getSupportFragmentManager().popBackStack();
+        getSupportFragmentManager().executePendingTransactions();
         if ((!mainFragment.isAdded()) && (getSupportFragmentManager().getBackStackEntryCount() == 0)) {
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mainFragment, "mainFragment").commit();
         }
