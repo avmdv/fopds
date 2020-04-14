@@ -81,9 +81,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         Fragment fragment = getSupportFragmentManager().findFragmentByTag("mainFragment");
         if ((fragment != null) && (fragment.isVisible())) {
-            menu.findItem(R.id.menu_item_update).setEnabled(true);
+            menu.findItem(R.id.menu_item_update).setVisible(true);
         } else {
-            menu.findItem(R.id.menu_item_update).setEnabled(false);
+            menu.findItem(R.id.menu_item_update).setVisible(false);
+        }
+        SettingsFragment settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentByTag("settingsFragment");
+        if ((settingsFragment != null) && (settingsFragment.isVisible())) {
+            menu.findItem(R.id.menu_item_settings).setEnabled(false);
+        } else {
+            menu.findItem(R.id.menu_item_settings).setEnabled(true);
         }
         AboutFragment aboutFragment = (AboutFragment) getSupportFragmentManager().findFragmentByTag("aboutFragment");
         if ((aboutFragment != null) && (aboutFragment.isVisible())) {
