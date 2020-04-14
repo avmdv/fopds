@@ -118,7 +118,7 @@ public class GenresListFragment extends Fragment {
         if (!genresBlacklist.contains(genre)) {
             this.genresBlacklist.add(genre);
             Collections.sort(genresBlacklist);
-            if (Settings.getInstance().getBlacklist()) {
+            if (Settings.getInstance().getGenresBlacklistState()) {
                 ((ArrayAdapter) listView.getAdapter()).notifyDataSetChanged();
             }
         }
@@ -133,7 +133,7 @@ public class GenresListFragment extends Fragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        if (Settings.getInstance().getBlacklist()) {
+        if (Settings.getInstance().getGenresBlacklistState()) {
             menu.findItem(R.id.menu_genreslist_item_blacklist).setChecked(true);
         } else {
             menu.findItem(R.id.menu_genreslist_item_blacklist).setChecked(false);
@@ -158,10 +158,10 @@ public class GenresListFragment extends Fragment {
     private void blackListGenres(MenuItem item) {
         if (item.isChecked()) {
             item.setChecked(false);
-            Settings.getInstance().getPreferences().edit().putBoolean("blacklist", false).commit();
+            Settings.getInstance().setGenresBlacklistState(false);
         } else {
             item.setChecked(true);
-            Settings.getInstance().getPreferences().edit().putBoolean("blacklist", true).commit();
+            Settings.getInstance().setGenresBlacklistState(true);
         }
         ((ArrayAdapter) listView.getAdapter()).notifyDataSetChanged();
     }

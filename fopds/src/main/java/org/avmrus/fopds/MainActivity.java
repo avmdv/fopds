@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initSettings(Context context) {
         Settings.getInstance().init(context);
-        Settings.getInstance().readPreferences();
     }
 
     public void showMainFragment() {

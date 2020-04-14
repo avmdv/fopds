@@ -31,7 +31,7 @@ public class GenresListAdapter extends ArrayAdapter<String> {
         LinearLayout listLayout = listItem.findViewById(R.id.item_genreslist_item);
         TextView textviewGenre = listItem.findViewById(R.id.item_genreslist_genre);
         textviewGenre.setText(genresList.get(position));
-        if (Settings.getInstance().getBlacklist() && isGenreBlacklisted(genresList.get(position))) {
+        if (Settings.getInstance().getGenresBlacklistState() && isGenreBlacklisted(genresList.get(position))) {
             listLayout.setVisibility(View.GONE);
         } else {
             listLayout.setVisibility(View.VISIBLE);

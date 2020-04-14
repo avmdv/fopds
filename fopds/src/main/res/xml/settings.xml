@@ -29,7 +29,7 @@
 
 		<SwitchPreference
 			android:defaultValue="false"
-			android:key="blacklist"
+			android:key="genres_blacklist_state"
 			android:title="@string/blacklist_genres" />
 
 	</PreferenceCategory>

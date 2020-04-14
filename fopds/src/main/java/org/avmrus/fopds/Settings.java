@@ -12,10 +12,6 @@ public class Settings {
     private static volatile Settings instance;
     public final static String LOG_TAG = "fopds: ";
     private Context context;
-    private String siteUrl;
-    private String libraryPath;
-    private String preferredFormat;
-    private Boolean blacklist;
     private SharedPreferences preferences;
 
     private Settings() {
@@ -43,30 +39,27 @@ public class Settings {
     }
 
     public String getSiteUrl() {
-        return siteUrl;
+        return preferences.getString("site_url", "http://flibusta.is");
     }
 
     public String getPreferredFormat() {
-        return preferredFormat;
+        return preferences.getString("download_format", "FB2");
     }
 
     public String getLibraryPath() {
-        return libraryPath;
+        return preferences.getString("library_path", "Books");
     }
 
-    public Boolean getBlacklist() {
-        return preferences.getBoolean("blacklist", false);
+    public Boolean getGenresBlacklistState() {
+        return preferences.getBoolean("genres_blacklist_state", false);
+    }
+
+    public void setGenresBlacklistState(boolean value) {
+        preferences.edit().putBoolean("genres_blacklist_state", value).apply();
     }
 
     public SharedPreferences getPreferences() {
         return preferences;
-    }
-
-    public void readPreferences() {
-        this.siteUrl = preferences.getString("site_url", "http://flibusta.is");
-        this.libraryPath = preferences.getString("library_path", "Books");
-        this.preferredFormat = preferences.getString("download_format", "FB2");
-        this.blacklist = preferences.getBoolean("blacklist", false);
     }
 
     public void storeArrayList(String key, ArrayList list) {
