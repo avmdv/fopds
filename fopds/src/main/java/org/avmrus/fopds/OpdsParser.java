@@ -79,7 +79,7 @@ public class OpdsParser {
         switch (node.getNodeName()) {
             case "id":
                 String sid = node.getTextContent().split(":")[2];
-                book.setId(Integer.parseInt(sid));
+                book.setId(sid);
                 break;
             case "title":
                 book.setTitle(node.getTextContent());
